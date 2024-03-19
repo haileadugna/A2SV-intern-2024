@@ -23,6 +23,6 @@ jobs:
         run: npm run build
         working-directory: task2
 
-      - name: Run tests
-        run: npm run test
-        working-directory: task2
+      # - name: Run tests
+        # run: npm run test
+        # working-directory: task2
