@@ -14,6 +14,10 @@ jobs:
       - uses: actions/setup-node@v3
         with: 
           node-version: '20.x'
+
+      - name: change directory
+        run: cd task2
+        
       - run: npm install
       - run: npm run build
       - run: npm run test
