@@ -1,0 +1,17 @@
+name: CI/CD Exercise
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  python:
+    runs-on: Ubuntu-latest
+
+    steps:
+      - Uses: actions/checkout@v4
+      - Uses: actions/setup-python@v3
+        with: 
+          python-version: '3.x'
+      - run: python --version
