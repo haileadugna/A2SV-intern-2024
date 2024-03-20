@@ -1,6 +1,7 @@
 import Card from "@/components/card";
 import { StaticImageData } from "next/image";
 import logo from "../public/assets/myfoto.jpg";
+import Link from "next/link";
 
 
 const data = [
@@ -51,15 +52,19 @@ const Opportunities = () => {
     return (
         <div className="p-5 gap-5 flex flex-col items-center">
 
-            {data.map((item, indexe) => (
-                <Card 
-                    key={indexe}
-                    title={item.title}
-                    subTitle={item.subTitle}
-                    description={item.description}
-                    tags={item.relatedTopics} 
-                    image={item.imageUrl}
-                />
+            {data.map((item, index) => (
+              <Link href={`/opportunities/${encodeURIComponent(item.title)}`} key={index}>
+                {/* <a> */}
+                  <Card 
+                      key={index}
+                      title={item.title}
+                      subTitle={item.subTitle}
+                      description={item.description}
+                      tags={item.relatedTopics} 
+                      image={item.imageUrl}
+                  />
+                {/* </a> */}
+              </Link>
             ))}
         </div>
     );
