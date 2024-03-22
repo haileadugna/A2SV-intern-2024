@@ -9,7 +9,7 @@ const Opportunities = () => {
 
             {data.map((item) => (
               <Link href={`opportunities/detail/${item.id}`} key={item.id}>
-                <a>
+               
                   <Card 
                       // key={index}
                       title={item.title}
@@ -18,7 +18,7 @@ const Opportunities = () => {
                       tags={item.relatedTopics} 
                       image={item.imageUrl}
                   />
-                </a>
+                
               </Link>
             ))}
         </div>
