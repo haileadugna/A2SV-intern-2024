@@ -48,17 +48,17 @@ const OpportunityDetail = () => {
 
 
                 <div className="flex flex-col gap-4">
-                  <h3 className="font-poppins font-extrabold text-3xl leading-7 text-gray-900">
-                    Responsibilities
-                  </h3>
-                  <ul className="list-disc flex flex-col gap-2">
-                    {responsibilities.map((item: string) => (
-                      <li className="flex items-center font-epilogue font-normal text-base leading-[25.6px] text-[#25324B]">
-                        <span className="mr-2"><FaRegCircleCheck className="text-green-500" /></span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+                    <h3 className="font-poppins font-extrabold text-3xl leading-7 text-gray-900">
+                        Responsibilities
+                    </h3>
+                    <ul className="list-disc flex flex-col gap-2">
+                        {responsibilities.map((item: string, key: number) => (
+                            <li key={key} className="flex items-center font-epilogue font-normal text-base leading-[25.6px] text-[#25324B]">
+                                <span className="mr-2"><FaRegCircleCheck className="text-green-500" /></span>
+                                {item}
+                            </li>
+                        ))}
+                    </ul>
                 </div>
 
         <div className="flex flex-col gap-4">
