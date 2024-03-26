@@ -4,7 +4,7 @@ import React from "react";
 
 const Card: React.FC<OpportunityDataProps> = ({ title, orgName, description, categories, logoUrl }) => {
     return (
-        <div className="h-[300px] w-[919px] rounded-[30px] border-[1px] bg-white p-[24px] overflow-auto">
+        <div className=" mb-4 rounded-[30px] border-[1px] bg-white p-[24px] overflow-auto">
             <div className="flex h-[100%] w-[100%] p-[24px]">
             <div className="h-[59px] w-[66px] mr-[24px]">
                     <Image src={logoUrl} alt="logo" width={200} height={200}/>

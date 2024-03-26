@@ -1,8 +1,6 @@
 'use client';
 
 import React from 'react';
-import { data } from '@/service/opportunitiesData';
-import jobDescriptionData from "../service/jobDetailData.json";
 import { useParams } from 'next/navigation';
 import Head from 'next/head';
 import { FaRegCircleCheck } from "react-icons/fa6";
@@ -11,36 +9,62 @@ import { HiOutlinePlusCircle } from "react-icons/hi2";
 import { AiOutlineFire } from "react-icons/ai";
 import { BsCalendar2Plus, BsSkipStartBtn } from "react-icons/bs";
 import { PiCalendarCheck } from "react-icons/pi";
+import { useOpportunityQuery } from '@/redux/slice/data';
 
 
 const OpportunityDetail = () => {
   const { id } = useParams();
-  const opportunity = data.find((item) => String(item.id) === String(id));
+  const { data, error, isLoading } = useOpportunityQuery(id as string);
+  // const newData = da;
+  console.log(id);
+  console.log(data);
+  // const opportunity = newData.find((item: { id: any; }) => String(item.id) === String(id));
 
   // console.log('opportunity', opportunity, id);
-  if (!opportunity) {
-    return <p>Loading...</p>; // Handle case where opportunity is not found
-  }
-    const {
-      description,
-      responsibilities,
-      idealCandidate,
-      whenAndWhere,
-      about,
-      categories,
-      requiredSkills,
-    } = jobDescriptionData;
-  
+  // if (!opportunity) {
+  //   return <p>Loading...</p>; // Handle case where opportunity is not found
+  // }
+
+// interface OpportunityDataProps {
+//   id: string;
+//   title: string;
+//   description: string;
+//   responsibilities: string;
+//   requirements: string;
+//   idealCandidate: string;
+//   categories: string[];
+//   opType: string;
+//   startDate: string;
+//   endDate: string;
+//   deadline: string;
+//   location: string[];
+//   requiredSkills: string[];
+//   whenAndWhere: string;
+//   orgID: string;
+//   datePosted: string;
+//   status: string;
+//   applicantsCount: number;
+//   viewsCount: number;
+//   orgName: string;
+//   logoUrl: string;
+//   isBookmarked: boolean;
+//   isRolling: boolean;
+//   questions: any;
+//   perksAndBenefits: any;
+//   createdAt: string;
+//   updatedAt: string;
+//   orgEmail: string;
+// }
 
   return (
     <div className="grid grid-cols-3 gap-14 p-8 ml-5">
       <div className="col-span-2 py-12 flex flex-col gap-14">
         <div className="flex flex-col gap-4">
           <h2 className="font-poppins font-extrabold text-3xl leading-7 text-gray-900">
-            {description.heading}
+            {data?.description}
           </h2>
           <p className="font-epilogue font-normal text-base leading-[25.6px] text-[#25324B]">
-            {description.content}
+            {}
           </p>
         </div>
 
@@ -51,22 +75,22 @@ const OpportunityDetail = () => {
                     <h3 className="font-poppins font-extrabold text-3xl leading-7 text-gray-900">
                         Responsibilities
                     </h3>
-                    <ul className="list-disc flex flex-col gap-2">
-                        {responsibilities.map((item: string, key: number) => (
+                    {/* <ul className="list-disc flex flex-col gap-2">
+                        {data?.responsibilities.map((item: string, key: number) => (
                             <li key={key} className="flex items-center font-epilogue font-normal text-base leading-[25.6px] text-[#25324B]">
                                 <span className="mr-2"><FaRegCircleCheck className="text-green-500" /></span>
                                 {item}
                             </li>
                         ))}
-                    </ul>
+                    </ul> */}
                 </div>
 
         <div className="flex flex-col gap-4">
           <h3 className="font-poppins font-extrabold text-3xl leading-7 text-gray-900">
             Ideal Candidate we want
           </h3>
-          <ul className="list-disc pl-6">
-            {idealCandidate.map((item, index) => (
+          {/* <ul className="list-disc pl-6">
+            {data?.idealCandidate.map((item: { label: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; description: any; }, index: React.Key | null | undefined) => (
               <li key={index} className="mb-4">
                 <p className="font-epilogue font-normal text-base leading-[25.6px] text-[#25324B]">
                   <span className="font-semibold">{item.label}</span>{" "}
@@ -74,7 +98,7 @@ const OpportunityDetail = () => {
                 </p>
               </li>
             ))}
-          </ul>
+          </ul> */}
         </div>
         <div className="flex flex-col gap-4">
           <h3 className="font-poppins font-extrabold text-3xl leading-7 text-gray-900">
@@ -82,7 +106,7 @@ const OpportunityDetail = () => {
           </h3>
           <div className="flex gap-4 items-center">
             <CiLocationOn className="text-blue-800 rounded-full border border-[#D6DDEB] p-2 w-12 h-12" />
-            <p>{whenAndWhere.onboardingEvent}</p>
+            <p>{data?.whenAndWhere}</p>
           </div>
         </div>
       </div>
@@ -95,35 +119,35 @@ const OpportunityDetail = () => {
             <HiOutlinePlusCircle className="text-blue-800 rounded-full border border-[#D6DDEB] p-2 w-12 h-12"/>
             <div className="font-epilogue font-normal text-base leading-[25.6px] text-[#25324B]">
               <p>Posted on</p>
-              <p className="font-semibold">{about.postedOn}</p>
+              <p className="font-semibold">{data?.datePosted}</p>
             </div>
           </li>
           <li className="flex items-center gap-4">
             <AiOutlineFire className="text-blue-800 rounded-full border border-[#D6DDEB] p-2 w-12 h-12" />
             <div className="font-epilogue font-normal text-base leading-[25.6px] text-[#25324B]">
               <p>Deadline</p>
-              <p className="font-semibold">{about.deadline}</p>
+              <p className="font-semibold">{data?.deadline}</p>
             </div>
           </li>
           <li className="flex items-center gap-4">
             <CiLocationOn className="text-blue-800 rounded-full border border-[#D6DDEB] p-2 w-12 h-12" />
             <div className="font-epilogue font-normal text-base leading-[25.6px] text-[#25324B]">
               <p>Location</p>
-              <p className="font-semibold">{about.location}</p>
+              <p className="font-semibold">{data?.location}</p>
             </div>
           </li>
           <li className="flex items-center gap-4">
             <BsCalendar2Plus  className="text-blue-800 rounded-full border border-[#D6DDEB] p-2 w-12 h-12"/>
             <div className="font-epilogue font-normal text-base leading-[25.6px] text-[#25324B]">
               <p>Start Date</p>
-              <p className="font-semibold">{about.startDate}</p>
+              <p className="font-semibold">{data?.startDate}</p>
             </div>
           </li>
           <li className="flex items-center gap-4">
             <PiCalendarCheck className="text-blue-800 rounded-full border border-[#D6DDEB] p-2 w-12 h-12" />
             <div className="font-epilogue font-normal text-base leading-[25.6px] text-[#25324B]">
               <p>End Date</p>
-              <p className="font-semibold">{about.endDate}</p>
+              <p className="font-semibold">{data?.endDate}</p>
             </div>
           </li>
         </ul>
@@ -133,7 +157,7 @@ const OpportunityDetail = () => {
             Categories
           </h3>
           <div className="flex gap-2 items-center">
-            {categories.map((category, index) => (
+            {data?.categories.map((category, index) => (
               <div key={index}>
                 <div className={`${index % 2 === 0 ? "text-[#FFB836]" : "text-[#56CDAD]"} ${index % 2 === 0
                         ? "bg-[#EB8533] bg-opacity-10"
@@ -150,7 +174,7 @@ const OpportunityDetail = () => {
             Required Skills
           </h3>
           <div className="flex flex-wrap gap-4 items-center">
-            {requiredSkills.map((skill, index) => (
+            {data?.requiredSkills.map((skill, index) => (
               <div key={index} className="w-[calc(50%-0.5rem)]">
                 <div className={`${"text-[#4640DE] text-[16p]"} "rounded-none" ${"bg-[#F8F8FD]"} h-[31px] rounded-[80px] px-[10px] py-[6px] gap-[8px] flex justify-center items-center`}>
                   <p className={`font-epilogue font-semibold text-[12px]`}>{skill}</p>

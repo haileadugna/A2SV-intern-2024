@@ -11,7 +11,10 @@ export const opportunitiesSlice = createApi({
         opportunities: builder.query<OpportunityDataProps, void>({ 
             query: () => "/opportunities/search",
         }),
+        opportunity: builder.query<OpportunityDataProps, string>({
+            query: (id) => `/opportunities/${id}`,
+        }),
     }),
 });
 
-export const { useOpportunitiesQuery } = opportunitiesSlice;
+export const { useOpportunitiesQuery, useOpportunityQuery } = opportunitiesSlice;
