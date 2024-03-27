@@ -1,16 +1,19 @@
 "use client"
 import { useLoginMutation } from '@/redux/slice/auth';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [login, { isLoading, error }] = useLoginMutation();
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await login({ email, password });
+      router.push("/opportunities")
       // handle successful login here
     } catch (err) {
       // handle error here

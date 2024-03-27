@@ -1,6 +1,7 @@
 'use client'
 import { useSignupMutation } from '@/redux/slice/auth';
 import { useRouter } from "next/navigation";
+import React, { useState } from 'react';
 
 
 function Signup() {
@@ -8,18 +9,24 @@ function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [role, setRole] = useState('');
   const [signup, { isLoading, error }] = useSignupMutation();
   const router = useRouter();
 
 
-const handleSubmit = async (e) => {
+  const handleSubmit = async (e:any) => {
     e.preventDefault();
     if (password !== confirmPassword) {
         // handle password mismatch
         return;
     }
     try {
-        await signup({ name, email, password });
+      console.log("working")
+        await signup({
+          name, email, password,
+          confirmPassword, role
+        });
+        console.log("why it is not working")
         router.push('/opportunities');
         // handle successful signup here
     } catch (err) {
@@ -70,6 +77,16 @@ const handleSubmit = async (e) => {
               name="confirmPassword"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </div>
+          <div>
+          <label className="block text-sm font-bold mb-2">Role</label>
+            <input
+              className="w-full p-2 border border-gray-300 rounded"
+              type="textds"
+              name="Role"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
             />
           </div>
           <button className="w-full p-2 bg-blue-600 text-white font-bold rounded" type="submit">
