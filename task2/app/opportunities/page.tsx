@@ -1,5 +1,6 @@
 'use client';
 import Card from "@/components/card";
+import Loading from "@/components/loading";
 import { useAppDispatch } from "@/redux/hook";
 import { useOpportunitiesQuery } from "@/redux/slice/data";
 import { OpportunityDataProps } from "@/types";
@@ -35,9 +36,7 @@ const Opportunities = () => {
     }
 
     if (isLoading) return (
-        <div className="flex justify-center items-center mt-32">
-            <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-purple-500"></div>
-        </div>
+        <Loading />
     );
 
     return (

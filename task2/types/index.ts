@@ -29,3 +29,17 @@ export interface OpportunityDataProps {
     updatedAt: string;
     orgEmail: string;
 }
+
+export interface SignupProps {
+    name: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+    role: string;
+}
+
+
+export interface LoginProps {
+    email: string;
+    password: string;
+}
