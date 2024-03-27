@@ -1,4 +1,4 @@
-import { LoginProps, SignupProps } from "@/types";
+import { LoginProps, SignupProps, VerifyEmailProps } from "@/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const authSlice = createApi({
@@ -21,7 +21,14 @@ const authSlice = createApi({
                 body: data,
             }),
         }),
+        verifyEmail: builder.mutation<void, VerifyEmailProps>({
+            query: (data) => ({
+                url: "/verify-email",
+                method: "POST",
+                body: data,
+            })
+        })
     }),
 });
 
-export const { useSignupMutation, useLoginMutation } = authSlice;
+export const { useSignupMutation, useLoginMutation, useVerifyEmailMutation } = authSlice;

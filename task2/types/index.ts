@@ -43,3 +43,8 @@ export interface LoginProps {
     email: string;
     password: string;
 }
+
+export interface VerifyEmailProps{
+    email: string;
+    otp: string;
+}

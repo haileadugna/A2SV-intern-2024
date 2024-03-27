@@ -26,8 +26,8 @@ function Signup() {
           name, email, password,
           confirmPassword, role
         });
-        console.log("why it is not working")
-        router.push('/opportunities');
+        localStorage.setItem('email', JSON.stringify(email));
+        router.push('/auth/verify-email');
         // handle successful signup here
     } catch (err) {
         // handle error here
